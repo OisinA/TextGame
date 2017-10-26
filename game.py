@@ -20,7 +20,7 @@ def get_user_class():
         terminate = True
         break
   return user_class(charclass.lower())
-  
+
 '''
 This function converts from the user's input into their chosen class.
 '''
@@ -28,7 +28,7 @@ def user_class(charclass):
   for c in charclasses:
     if c.get_name().lower() == charclass:
       return c
-  
+
 '''
 Read in the player's input and convert it to their action.
 '''
@@ -51,41 +51,49 @@ def main():
   player.reset_turn()
   terminate = False
   action = read_input()
-      
+
   line_separator("=")
-  
+
   terminate = player.perform_action(action, enemy)
-  
+
   line_separator("*")
-  
+
   if enemy.get_health() > 0:
     enemy.attack(player)
     print("Your remaining health is %d." % player.get_health())
     print("The %s has %d health remaining." % (enemy.get_name(), enemy.get_health()))
-  
+
   if(player.get_health() <= 0):
     line_separator("=")
     print("You have died.")
     line_separator("=")
     terminate = True
-  
+
   if(enemy.get_health() <= 0):
     print("You have killed the enemy!")
     terminate = True
-    
+
   return terminate
 
-  
+
 '''
 This function prints a line separator to the output.
 '''
 def line_separator(s):
   print(s * 22)
 
+line_separator("=")
+print("Pickable classes: ")
+for c in charclasses:
+  print(c.get_name(), end=" ")
+print()
+line_separator("=")
+
 charclass = get_user_class() #Fetch player class.
 print("You have chosen the %s class." % charclass.get_name())
+
 player = Player("Oisin", 15, charclass) # Initiate player object.
-enemy = Enemy("Zombie", 2) # Initiate enemy object.
+enemy = Enemy("Zombie", 1) # Initiate enemy object.
 
 line_separator("=")
 print("You are playing as %s. You have %d health." % (player.get_name(), player.get_health()))
@@ -93,6 +101,6 @@ print("You have come across a %s, who has %d health." % (enemy.get_name(), enemy
 terminate = False
 while not terminate:
   terminate = main()
-  
+
 print("The game is over.")
 line_separator("=")
