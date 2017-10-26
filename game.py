@@ -66,7 +66,7 @@ def main():
   if(player.get_health() <= 0):
     line_separator("=")
     print("You have died.")
-    line_separator()
+    line_separator("s")
     terminate = True
   
   if(enemy.get_health() <= 0):
