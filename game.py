@@ -64,13 +64,13 @@ def main():
     print("Your remaining health is %d." % player.get_health())
     print("The %s has %d health remaining." % (enemy.get_name(), enemy.get_health()))
 
-  if(player.get_health() <= 0):
+  if player.get_health() <= 0:
     line_separator("=")
     print("You have died.")
     line_separator("=")
     terminate = True
 
-  if(enemy.get_health() <= 0):
+  if enemy.get_health() <= 0:
     print("You have killed the enemy!")
     terminate = True
 
