@@ -3,8 +3,9 @@ from player import Player
 from enemy import Enemy
 from wizard import Wizard
 from barbarian import Barbarian
+from samurai import Samurai
 
-charclasses = [Wizard(), Barbarian()]
+charclasses = [Wizard(), Barbarian(), Samurai()]
 
 '''
 This function prompts the user for their class and returns thie chosen class.
@@ -92,11 +93,14 @@ line_separator("=")
 charclass = get_user_class() #Fetch player class.
 print("You have chosen the %s class." % charclass.get_name())
 
-player = Player("Oisin", 15, charclass) # Initiate player object.
+print("What is your name?")
+name = input("> ")
+
+player = Player(name, 15, charclass) # Initiate player object.
 enemy = Enemy("Zombie", 1) # Initiate enemy object.
 
 line_separator("=")
-print("You are playing as %s. You have %d health." % (player.get_name(), player.get_health()))
+print("You are playing as %s, the %s. You have %d health." % (player.get_name(), charclass.get_name(), player.get_health()))
 print("You have come across a %s, who has %d health." % (enemy.get_name(), enemy.get_health()))
 terminate = False
 while not terminate:
